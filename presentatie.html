@@ -59,18 +59,6 @@
     padding: 0 .4em; outline: none; min-width: 6em; display: inline-block;
   }
 
-  /* Vallende skydiver */
-  .diver { width: clamp(50px, 6vw, 90px); filter: drop-shadow(0 6px 6px rgba(0,0,0,.25)); }
-  .falling { animation: fall 2.4s ease-in-out infinite; }
-  @keyframes fall { 0%,100% { transform: translateY(-14px); } 50% { transform: translateY(14px); } }
-  .speedlines { position: relative; }
-  .speedlines::before {
-    content: ''; position: absolute; left: 50%; top: -60%; width: 60%; height: 70%;
-    transform: translateX(-50%);
-    background: repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 3px, transparent 3px 14px);
-    -webkit-mask: linear-gradient(transparent, #000); mask: linear-gradient(transparent, #000);
-  }
-
   /* Snelheidsbalken */
   .bars { width: min(1000px, 88vw); text-align: left; }
   .bar-row { display: flex; align-items: center; gap: 1.5vw; margin: 1.6vh 0; }
@@ -101,6 +89,18 @@
   .win .big { font-size: clamp(44px, 8vw, 120px); }
   .win p { font-size: clamp(16px, 2.1vw, 32px); }
 
+  /* Beginscherm: speed poppetje met snelheidsstrepen die omhoog wegschieten */
+  .title-diver { height: clamp(170px, 30vh, 300px); margin-bottom: 1vh; }
+  .streak { animation: streak 1s linear infinite; }
+  @keyframes streak {
+    0% { transform: translateY(40px); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-70px); opacity: 0; }
+  }
+
+  /* Videodia */
+  .slide-video { max-width: 94vw; max-height: 82vh; border-radius: 16px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+
   /* Figuur met bewegende pijl naar beneden */
   .fig-stack { display: flex; flex-direction: column; align-items: center; gap: 1vh; margin: 1vh 0; }
   .arrow { width: clamp(20px, 2vw, 30px); height: clamp(40px, 4vw, 60px); animation: drop 1.4s ease-in infinite; }
@@ -113,7 +113,7 @@
   }
 
   /* Infographic "Wat is skydiven?" */
-  .steps { width: min(1200px, 92vw); max-height: 68vh; }
+  .steps { width: min(1500px, 97vw); max-height: 74vh; }
   .steps text { fill: #fff; font-family: inherit; }
   .steps .t { font-size: 21px; font-weight: bold; }
   .steps .s { font-size: 16px; opacity: .85; }
@@ -138,23 +138,25 @@
     display: none; z-index: 9; text-align: left;
   }
   .show-notes .notes { display: block; }
-  .help { position: fixed; top: 14px; right: 18px; font-size: 14px; opacity: .6; z-index: 10; }
+  .help { position: fixed; bottom: 14px; right: 18px; font-size: 14px; opacity: .6; z-index: 10; }
 </style>
 </head>
 <body>
 
-<div class="cloud" style="top:12vh;width:220px;height:50px;animation-duration:70s;animation-delay:-20s"></div>
-<div class="cloud" style="top:38vh;width:160px;height:38px;animation-duration:55s;animation-delay:-40s"></div>
-<div class="cloud" style="top:70vh;width:260px;height:56px;animation-duration:90s;animation-delay:-5s"></div>
+<!-- Wolken: twee groepen, binnen een groep dezelfde snelheid en gelijk verdeeld over de tijd.
+     Langzame groep (3 wolken) geeft steeds 2 of 3 in beeld, snelle groep (2 wolken) 1 of 2: samen altijd 3 tot 5. -->
+<div class="cloud" style="top:10vh;width:240px;height:54px;animation-duration:80s;animation-delay:0s"></div>
+<div class="cloud" style="top:44vh;width:200px;height:46px;animation-duration:80s;animation-delay:-26.7s"></div>
+<div class="cloud" style="top:78vh;width:260px;height:56px;animation-duration:80s;animation-delay:-53.3s"></div>
+<div class="cloud" style="top:26vh;width:150px;height:36px;animation-duration:55s;animation-delay:-10s"></div>
+<div class="cloud" style="top:62vh;width:170px;height:40px;animation-duration:55s;animation-delay:-37.5s"></div>
 
 <div class="progress" id="progress"></div>
 <div class="help">Klik of pijltjes = volgende / vorige &nbsp; F = volledig scherm &nbsp; N = spreektekst</div>
 
-<!-- Skydiver-vorm, één keer gedefinieerd en daarna hergebruikt -->
+<!-- Tekeningen, één keer gedefinieerd en daarna hergebruikt -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
-    <path id="diver-shape" transform="rotate(180 15 40)"
-      d="M15 0C17 0 19 2 19 5C19 8 17 10 16 12C18 12 21 14 22 18C23 22 22 26 20 30C19 33 18 36 18 40C18 44 19 48 20 52C21 56 22 60 21 64C20 68 18 72 17 74C16 76 15 78 15 80C15 78 14 76 13 74C12 72 10 68 9 64C8 60 9 56 10 52C11 48 12 44 12 40C12 36 11 33 10 30C8 26 7 22 8 18C9 14 12 12 14 12C13 10 11 8 11 5C11 2 13 0 15 0Z"/>
     <!-- Cessna 208 Caravan, zijaanzicht, neus naar rechts: hoge vleugel met stijl, vast landingsgestel, vrachtbak onder de romp -->
     <symbol id="plane" viewBox="0 0 118 44">
       <g stroke="#fff" stroke-linecap="round">
@@ -198,15 +200,6 @@
         <path d="M30,62 Q30.5,36 29,10" stroke="var(--fig, #ffd23f)" stroke-width="9"/>
       </g>
     </symbol>
-    <!-- FlySight 2: klein zwart kastje met knop, lampje en USB-poort -->
-    <symbol id="flysight" viewBox="0 0 80 50">
-      <rect x="2" y="4" width="76" height="42" rx="9" fill="#1d2330"/>
-      <rect x="6" y="8" width="68" height="34" rx="6" fill="none" stroke="#3a4558" stroke-width="1.5"/>
-      <text x="40" y="29" text-anchor="middle" font-size="10" font-weight="bold" fill="#e8eef7" font-family="Trebuchet MS, sans-serif">FlySight</text>
-      <circle cx="16" cy="16" r="2.4" fill="#5be37d"/>
-      <circle cx="64" cy="16" r="4" fill="#3a4558"/>
-      <rect x="32" y="40" width="16" height="4" rx="1.5" fill="#8a96a8"/>
-    </symbol>
     <!-- Eiffeltoren -->
     <symbol id="eiffel" viewBox="0 0 60 120" preserveAspectRatio="none">
       <path d="M28.5 0 H31.5 L32 10 L34 32 L36 52 H40 L39 56 L44 80 H48 L47 84 L58 120 H44 Q30 96 16 120 H2 L13 84 L12 80 H16 L21 56 L20 52 H24 L26 32 L28 10 Z" fill="#ff9f43"/>
@@ -222,36 +215,28 @@
       <path d="M2 18 L20 2 L38 18 H33 V36 H7 V18 Z" fill="#fff"/>
       <rect x="16" y="24" width="8" height="12" fill="#4fb3ff"/>
     </symbol>
-    <!-- Open parachute met skydiver eronder -->
-    <symbol id="canopy" viewBox="0 0 70 82">
-      <path d="M5 20 Q35 2 65 20 L62 28 Q35 13 8 28 Z" fill="#5be37d"/>
-      <path d="M20 12 L19 23 M35 9 V18 M50 12 L51 23" stroke="#2f8f4e" stroke-width="1.5"/>
-      <path d="M8 28 L35 56 M20 21 L35 56 M50 21 L35 56 M62 28 L35 56" stroke="#fff" stroke-width="1" opacity=".8"/>
-      <g fill="none" stroke="#fff" stroke-linecap="round">
-        <path d="M35 63 V72" stroke-width="5.5"/>
-        <path d="M35 65 L29 58 M35 65 L41 58" stroke-width="3"/>
-        <path d="M35 72 Q32 76 31 80 M35 72 Q38 76 39 80" stroke-width="3.5"/>
-      </g>
-      <circle cx="35" cy="59" r="4.2" fill="#fff"/>
-    </symbol>
-    <!-- Gelande skydiver, armen omhoog -->
-    <symbol id="lander" viewBox="0 0 30 44">
-      <g fill="none" stroke="#fff" stroke-linecap="round">
-        <path d="M15 13 V27" stroke-width="6"/>
-        <path d="M15 16 Q9 12 6 4 M15 16 Q21 12 24 4" stroke-width="3.5"/>
-        <path d="M15 27 Q12 34 10 42 M15 27 Q18 34 20 42" stroke-width="4"/>
-      </g>
-      <circle cx="15" cy="7" r="5.5" fill="#fff"/>
-    </symbol>
   </defs>
 </svg>
 
 <!-- 1. Titel -->
-<section class="slide" data-notes="Hallo allemaal! Mijn spreekbeurt gaat over speed skydiven. Dat is de snelste sport van de wereld zonder motor. Ik ga jullie vertellen wat het is, hoe snel het gaat en hoe je kunt winnen.">
-  <div class="speedlines"><svg class="diver falling" viewBox="0 0 30 80"><use href="#diver-shape" fill="#ffd23f"/></svg></div>
+<section class="slide" data-notes="Mijn spreekbeurt gaat over speed skydiven. Dat is de snelste sport van de wereld zonder motor. Ik ga jullie vertellen wat het is, hoe snel het gaat en hoe je kunt winnen.">
+  <!-- Speed poppetje met snelheidsstrepen die langs en boven hem omhoog wegschieten -->
+  <svg class="title-diver" viewBox="0 -20 200 225">
+    <g fill="none" stroke="#fff" stroke-linecap="round">
+      <g class="streak" style="animation-delay:0s;animation-duration:.8s"><path d="M33 52 v-30" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.29s;animation-duration:1s"><path d="M52.5 105 v-67" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.58s;animation-duration:1.2s"><path d="M72 68 v-59" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.87s;animation-duration:.8s"><path d="M89.5 121 v-51" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.16s;animation-duration:1s"><path d="M110.5 84 v-43" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.45s;animation-duration:1.2s"><path d="M128 137 v-35" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.74s;animation-duration:.8s"><path d="M147.5 100 v-72" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.03s;animation-duration:1s"><path d="M167 63 v-64" stroke-width="2" opacity=".5"/></g>
+    </g>
+    <use href="#flyer-head" x="71" y="62" width="58" height="135"/>
+  </svg>
   <h1>Speed skydiven</h1>
   <p>De snelste sport zonder motor</p>
-  <p style="margin-top:4vh">Door: <b>Marre Anne</b></p>
+  <p style="margin-top:4vh;font-size:clamp(16px,1.8vw,26px);opacity:.65">Door <b>Marre Anne</b></p>
 </section>
 
 <!-- 2. Wat is skydiven -->
@@ -276,7 +261,7 @@
       <use href="#plane" x="10" y="36" width="160" height="60"/>
       <path d="M78 84 Q 100 108 116 138" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
       <use href="#flyer-belly" x="100" y="135" width="104" height="52" transform="rotate(14 152 161)"/>
-      <circle cx="34" cy="294" r="18" fill="#ffd23f"/><text x="34" y="295" class="n">2</text>
+      <circle cx="34" cy="294" r="18" fill="#fff"/><text x="34" y="295" class="n">2</text>
       <text x="62" y="301" class="t">Springen</text>
       <text x="20" y="340" class="s">uit de open deur</text>
     </g>
@@ -285,7 +270,7 @@
       <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <path d="M70 30 V105 M95 18 V112 M120 22 V110 M145 34 V104" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
       <use href="#flyer-belly" x="40" y="112" width="140" height="70"/>
-      <circle cx="34" cy="294" r="18" fill="#ffd23f"/><text x="34" y="295" class="n">3</text>
+      <circle cx="34" cy="294" r="18" fill="#fff"/><text x="34" y="295" class="n">3</text>
       <text x="62" y="301" class="t">Vrije val</text>
       <text x="20" y="340" class="s">ongeveer 1 minuut</text>
       <text x="20" y="362" class="s">200 km per uur</text>
@@ -294,10 +279,36 @@
     <g transform="translate(765,70)">
       <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <rect x="0" y="230" width="220" height="20" fill="#2f8f4e"/>
-      <use href="#canopy" x="30" y="16" width="84" height="98"/>
-      <path d="M82 118 C 100 165, 140 170, 160 190" fill="none" stroke="#5be37d" stroke-width="4" stroke-dasharray="12 8" stroke-linecap="round"/>
-      <use href="#lander" x="156" y="192" width="26" height="38"/>
-      <circle cx="34" cy="294" r="18" fill="#5be37d"/><text x="34" y="295" class="n">4</text>
+      <!-- Open parachute; het poppetje hangt eronder, van voren, beide handen aan de stuurlijnen -->
+      <g transform="translate(14 6) scale(1.3)">
+        <path d="M5 20 Q35 2 65 20 L62 28 Q35 13 8 28 Z" fill="#5be37d"/>
+        <path d="M20 12 L19 23 M35 9 V18 M50 12 L51 23" stroke="#2f8f4e" stroke-width="1.5"/>
+        <path d="M8 28 L27.4 48.5 M20 21 L27.4 48.5 M50 21 L42.6 48.5 M62 28 L42.6 48.5" stroke="#fff" stroke-width=".9" opacity=".8"/>
+        <g transform="translate(35 58) scale(.95)" fill="none" stroke="#ffd23f" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="-8" y="7" width="16" height="15" rx="2.5" fill="#b07f00" stroke="none"/>
+          <path d="M0 7 Q0 14.5 0 24" stroke-width="11"/>
+          <circle cx="0" cy="0" r="6" fill="#ffd23f" stroke="none"/>
+          <path d="M-4 9 Q-14 4.5 -8 -10 M4 9 Q14 4.5 8 -10" stroke-width="3.4"/>
+          <path d="M-3 23 Q-4.5 34 -4 45 M3 23 Q4.5 34 4 45" stroke-width="5"/>
+        </g>
+      </g>
+      <path d="M76 140 C 100 175, 140 172, 165 178" fill="none" stroke="#5be37d" stroke-width="4" stroke-dasharray="12 8" stroke-linecap="round"/>
+      <!-- Neergelegde parachute op de grond -->
+      <g transform="translate(150 230)">
+        <path d="M-26 0 Q-30 -10 -18 -12 Q-10 -18 0 -11 Q10 -15 14 -6 Q20 -4 18 0 Z" fill="#5be37d"/>
+        <path d="M-18 -6 Q-8 -10 2 -5 M-4 -3 Q6 -7 12 -2" stroke="#2f8f4e" stroke-width="1.4" fill="none"/>
+      </g>
+      <!-- Geland, van opzij, zwaaiend -->
+      <g transform="translate(182 179.6) scale(1.05)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-1 10 Q-6.5 18 -6 26" stroke="#d6a21c" stroke-width="3"/>
+        <path d="M-1 23 Q-2 35.5 -3 46" stroke="#d6a21c" stroke-width="5"/>
+        <rect x="-9" y="8" width="6" height="14" rx="2.5" fill="#b07f00"/>
+        <path d="M1 7 Q-0.5 15 0 23" stroke="#ffd23f" stroke-width="10"/>
+        <circle cx="1" cy="0" r="6" fill="#ffd23f"/>
+        <path d="M2 10 Q11.5 6.5 11 -7" stroke="#ffd23f" stroke-width="3.4"/>
+        <path d="M1 23 Q3.5 35.5 4 46" stroke="#ffd23f" stroke-width="5.5"/>
+      </g>
+      <circle cx="34" cy="294" r="18" fill="#fff"/><text x="34" y="295" class="n">4</text>
       <text x="62" y="301" class="t">Landen</text>
       <text x="20" y="340" class="s">parachute open</text>
       <text x="20" y="362" class="s">ongeveer 5 min.</text>
@@ -306,7 +317,12 @@
   </svg>
 </section>
 
-<!-- 3. Wat is speed skydiven -->
+<!-- 3. Video -->
+<section class="slide" data-notes="Nu laat ik een filmpje zien van een echte sprong van mijn vader.">
+  <video class="slide-video" src="hugo.mp4" controls playsinline preload="auto"></video>
+</section>
+
+<!-- 4. Wat is speed skydiven -->
 <section class="slide" data-notes="Bij gewoon skydiven val je meestal op je buik, met je armen en benen wijd. Bij speed skydiven wil je juist zo snel mogelijk vallen. Daarom ga je met je hoofd naar beneden, net als een pijl.">
   <h2>Wat is <span class="yellow">speed</span> skydiven?</h2>
   <div class="row" style="gap:6vw">
@@ -329,19 +345,24 @@
   </div>
 </section>
 
-<!-- 4. Hoe snel -->
-<section class="slide" data-notes="Hoe snel gaat dat dan? Een fiets gaat ongeveer 20 kilometer per uur. Een auto op de snelweg ongeveer 100. Een snelle trein 300. De Formule 1-auto van Max Verstappen haalt ongeveer 350 kilometer per uur. Maar een speed skydiver gaat nog veel sneller: meer dan 500 kilometer per uur! Dat is vijf keer zo snel als een auto op de snelweg.">
+<!-- 5. Hoe snel -->
+<section class="slide" data-notes="Hoe snel gaat dat dan? Een fiets gaat ongeveer 25 kilometer per uur. Een auto op de snelweg ongeveer 120. Een snelle trein 300. De Formule 1-auto van Max Verstappen haalt ongeveer 350 kilometer per uur. Maar een speed skydiver gaat nog veel sneller: meer dan 500 kilometer per uur! Dat is meer dan vier keer zo snel als een auto op de snelweg.">
   <h2>Hoe snel gaat dat?</h2>
   <div class="bars">
-    <div class="bar-row"><div class="bar-label">Fiets</div><div class="bar-track"><div class="bar" style="--w:4%;background:var(--green)"></div></div><b style="min-width:4.5em">20 km/u</b></div>
-    <div class="bar-row"><div class="bar-label">Auto</div><div class="bar-track"><div class="bar" style="--w:20%;background:#7fd1ff"></div></div><b style="min-width:4.5em">100 km/u</b></div>
+    <div class="bar-row"><div class="bar-label">Fiets</div><div class="bar-track"><div class="bar" style="--w:5%;background:var(--green)"></div></div><b style="min-width:4.5em">25 km/u</b></div>
+    <div class="bar-row"><div class="bar-label">Auto</div><div class="bar-track"><div class="bar" style="--w:24%;background:#7fd1ff"></div></div><b style="min-width:4.5em">120 km/u</b></div>
     <div class="bar-row"><div class="bar-label">Snelle trein</div><div class="bar-track"><div class="bar" style="--w:60%;background:var(--orange)"></div></div><b style="min-width:4.5em">300 km/u</b></div>
     <div class="bar-row"><div class="bar-label">Max Verstappen</div><div class="bar-track"><div class="bar" style="--w:70%;background:var(--pink)"></div></div><b style="min-width:4.5em">350 km/u</b></div>
     <div class="bar-row"><div class="bar-label yellow">Speed skydiver</div><div class="bar-track"><div class="bar" style="--w:100%;background:var(--yellow)"></div></div><b class="yellow" style="min-width:4.5em">500+ km/u</b></div>
   </div>
 </section>
 
-<!-- 5. Hoe hoog -->
+<!-- 6. Video speed -->
+<section class="slide" data-notes="Zo ziet een speed sprong eruit.">
+  <video class="slide-video" src="speed.mp4" controls playsinline preload="auto"></video>
+</section>
+
+<!-- 7. Hoe hoog -->
 <section class="slide" data-notes="Om zo snel te kunnen gaan, moet je heel hoog beginnen. Het vliegtuig vliegt ongeveer 4 kilometer hoog. De Eiffeltoren in Parijs is 330 meter hoog. Het hoogste gebouw van de wereld is de Burj Khalifa in Dubai. Die is bijna 830 meter hoog. Het vliegtuig is dus bijna vijf keer zo hoog als het hoogste gebouw van de wereld!">
   <h2>Hoe hoog spring je?</h2>
   <div class="row" style="gap:5vw;align-items:flex-end">
@@ -359,7 +380,7 @@
   </div>
 </section>
 
-<!-- 6. Houding -->
+<!-- 8. Houding -->
 <section class="slide" data-notes="Waarom ga je met je hoofd naar beneden? Als je valt, duwt de lucht tegen je aan. Als je plat ligt, zoals een parachute of een vel papier, duwt er heel veel lucht tegen je en ga je langzaam. Als je smal bent, zoals een pijl, glijd je door de lucht heen.">
   <h2>Waarom als een pijl?</h2>
   <div class="row" style="gap:5vw;align-items:stretch">
@@ -380,7 +401,7 @@
   </div>
 </section>
 
-<!-- 7. Uitrusting -->
+<!-- 9. Uitrusting -->
 <section class="slide" data-notes="Wat heb je nodig voor speed skydiven? Een gladde helm, zodat de lucht er makkelijk langs glijdt. Een strak pak, zodat er niks wappert. Natuurlijk een parachute, en ook een reserveparachute voor als er iets misgaat. Een hoogtemeter, zodat je weet hoe hoog je bent. En een klein meetkastje dat met GPS meet hoe snel je gaat. Dat heet bijvoorbeeld een FlySight.">
   <h2>Wat heb je nodig?</h2>
   <div class="gear">
@@ -388,11 +409,11 @@
     <div class="card"><div class="icon">2</div><b>Strak pak</b><p>Zodat er niks wappert</p></div>
     <div class="card"><div class="icon">3</div><b>Parachute</b><p>En een reserve, voor de zekerheid</p></div>
     <div class="card"><div class="icon">4</div><b>Hoogtemeter</b><p>Hoe hoog ben ik nog?</p></div>
-    <div class="card"><div class="icon">5</div><b>FlySight</b><p>Meet met GPS hoe snel je gaat</p><svg viewBox="0 0 80 50" style="width:75%;margin-top:1vh"><use href="#flysight"/></svg></div>
+    <div class="card"><div class="icon">5</div><b>FlySight</b><p>Meet met GPS hoe snel je gaat</p><img src="flysight.png" alt="FlySight" style="width:60%;margin-top:1vh;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))"></div>
   </div>
 </section>
 
-<!-- 8. Hoe win je -->
+<!-- 10. Hoe win je -->
 <section class="slide" data-notes="Hoe win je een wedstrijd? Bij een wedstrijd maakt iedereen 8 sprongen. Bij elke sprong kijkt de FlySight naar de snelste drie seconden. Hoe snel ging je toen gemiddeld? Dat is je score voor die sprong. Aan het eind worden de scores van alle 8 sprongen bij elkaar genomen. Wie gemiddeld het snelst was, wint. Je moet dus niet één keer, maar elke keer heel snel zijn! De snelste sprong ooit, gemeten met GPS, was 542 kilometer per uur. Die sprong maakte Niklas Daniel uit Amerika, in september 2026.">
   <h2>Hoe win je?</h2>
   <div class="row win" style="gap:2.5vw;align-items:stretch;flex-wrap:nowrap;width:min(1150px,88vw)">
@@ -417,9 +438,22 @@
   </div>
 </section>
 
-<!-- 9. Einde -->
+<!-- 11. Einde -->
 <section class="slide" data-notes="Dat was mijn spreekbeurt over speed skydiven. Bedankt voor het luisteren! Heeft iemand nog vragen?">
-  <div class="speedlines"><svg class="diver falling" viewBox="0 0 30 80"><use href="#diver-shape" fill="#ffd23f"/></svg></div>
+  <!-- Zelfde speed poppetje als op het beginscherm -->
+  <svg class="title-diver" viewBox="0 -20 200 225">
+    <g fill="none" stroke="#fff" stroke-linecap="round">
+      <g class="streak" style="animation-delay:0s;animation-duration:.8s"><path d="M33 52 v-30" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.29s;animation-duration:1s"><path d="M52.5 105 v-67" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.58s;animation-duration:1.2s"><path d="M72 68 v-59" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.87s;animation-duration:.8s"><path d="M89.5 121 v-51" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.16s;animation-duration:1s"><path d="M110.5 84 v-43" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.45s;animation-duration:1.2s"><path d="M128 137 v-35" stroke-width="2" opacity=".5"/></g>
+      <g class="streak" style="animation-delay:-.74s;animation-duration:.8s"><path d="M147.5 100 v-72" stroke-width="3" opacity=".8"/></g>
+      <g class="streak" style="animation-delay:-.03s;animation-duration:1s"><path d="M167 63 v-64" stroke-width="2" opacity=".5"/></g>
+    </g>
+    <use href="#flyer-head" x="71" y="62" width="58" height="135"/>
+  </svg>
   <h1>Zijn er nog <span class="yellow">vragen</span>?</h1>
 </section>
 
@@ -440,19 +474,32 @@
     document.getElementById('counter').textContent = (current + 1) + ' / ' + slides.length;
     document.getElementById('progress').style.width = ((current + 1) / slides.length * 100) + '%';
     document.getElementById('notes').textContent = slides[current].dataset.notes || '';
+    // Bedieningstekst rechtsonder alleen op het beginscherm
+    document.querySelector('.help').style.display = current === 0 ? '' : 'none';
+
+    // Video speelt alleen op zijn eigen dia: start bij binnenkomst, pauzeert bij weggaan
+    document.querySelectorAll('.slide video').forEach(function (v) {
+      if (v.closest('.slide') === slides[current]) v.play().catch(function () {});
+      else v.pause();
+    });
   }
+
+  function currentVideo() { return slides[current].querySelector('video'); }
 
   document.getElementById('prev').onclick = function () { show(current - 1); };
   document.getElementById('next').onclick = function () { show(current + 1); };
 
   // Klik ergens op de dia: volgende dia (de knoppen onderaan doen hun eigen ding)
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.nav')) return;
+    if (e.target.closest('.nav') || e.target.closest('video')) return;
     show(current + 1);
   });
 
   document.addEventListener('keydown', function (e) {
     if (e.target.isContentEditable) return;
+    // Spatie op de videodia: pauzeren of verder afspelen in plaats van volgende dia
+    var v = currentVideo();
+    if (e.key === ' ' && v) { e.preventDefault(); if (v.paused) v.play(); else v.pause(); return; }
     if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); show(current + 1); }
     else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(current - 1); }
     else if (e.key === 'Home') show(0);
