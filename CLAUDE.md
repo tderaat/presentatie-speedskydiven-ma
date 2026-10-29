@@ -7,15 +7,15 @@ A school presentation (spreekbeurt) about speed skydiving for Marre Anne, a girl
 ## Files
 
 - `index.html`: the presentation itself (named `index.html` so GitHub Pages opens it at https://tderaat.github.io/presentatie-speedskydiven-ma/): inline CSS, inline SVG, a little vanilla JS. It needs no network, so it runs from a USB stick at school, as long as the files it loads sit next to it: `flysight.png` and the two videos.
-- `flysight.png`: photo of a FlySight (the original, black with the FlySight sticker) with the white background cut out to transparency and cropped to the device. Used on the "Wat heb je nodig?" slide.
+- `flysight.png`: photo of a FlySight (the original, black with the FlySight sticker) with the white background cut out to transparency and cropped to the device. Currently unused: the "Wat heb je nodig?" slide that showed it was removed at Thomas's request.
 - `spreektekst.html`: the speaker text per slide, printable, plus presenting tips at the top.
 - `mockups-*.html`: design variants that were shown to choose from. They are not used by the presentation and may be deleted.
 
-**Keep the two main files in sync.** Each slide's speaker text lives twice: in the slide's `data-notes` attribute (shown on screen with N) and in `spreektekst.html`. Change both. When a slide is added or removed, renumber the slides in `spreektekst.html` and check the duration estimate in the tips (now about 5 minutes for 11 slides, plus the two videos).
+**Keep the two main files in sync.** Each slide's speaker text lives twice: in the slide's `data-notes` attribute (shown on screen with N) and in `spreektekst.html`. Change both. When a slide is added or removed, renumber the slides in `spreektekst.html` and check the duration estimate in the tips (now about 5 minutes for 10 slides, plus the two videos).
 
 ## Controls
 
-Click anywhere (except the nav buttons) or press Right/Space/Enter for the next slide. Left/Backspace goes back. F toggles fullscreen, N shows the speaker text at the bottom. The counter and a dark-blue progress bar (`#061a40`) show where you are. A short controls hint sits bottom right on the title slide only; `show()` hides it on every other slide.
+Click anywhere (except the nav buttons) or press Right/Space/Enter for the next slide. Left/Backspace goes back. F toggles fullscreen, N shows the speaker text at the bottom (N is deliberately not mentioned in the on-screen hint). The counter and a dark-blue progress bar (`#061a40`) show where you are. A short controls hint sits bottom right on the title slide only; `show()` hides it on every other slide.
 
 ## Slides (current order)
 
@@ -27,9 +27,8 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 6. **Video speed:** plays `speed.mp4`, a speed jump.
 7. **Hoe hoog spring je?** Silhouettes of a house (8 m), the Eiffeltoren (330 m), the Burj Khalifa (828 m) and the Cessna 208 at 4000 m. The towers are to scale against the 4000 m; only the house is drawn bigger than scale so it stays visible.
 8. **Waarom als een pijl?** White belly skydiver with pink arrows (air pushing back, langzaam) next to the yellow head-down skydiver with airflow lines (snel). Below the cards: the faster you go, the more unstable it gets and the harder it is to hold the arrow position.
-9. **Wat heb je nodig?** Five cards on one row: gladde helm, strak pak, parachute, hoogtemeter, FlySight (with the `flysight.png` photo).
-10. **Hoe win je?** Three cards: a competition has 8 sprongen, per jump the 3 fastest seconds count, the fastest on average over all jumps wins. Below them: the fastest GPS jump ever.
-11. **Zijn er nog vragen?** Only that line, no "Bedankt!".
+9. **Hoe win je?** Three cards: a competition has 8 sprongen, per jump the 3 fastest seconds count, the fastest on average over all jumps wins. Below them: the fastest GPS jump ever.
+10. **Zijn er nog vragen?** Only that line, no "Bedankt!".
 
 ### Video slides
 
@@ -54,7 +53,7 @@ All artwork is inline SVG `<symbol>`s in the hidden `<svg>` at the top of `index
 - Use real, recognisable references: Max Verstappen (no "Formule 1" label under the name), the Eiffeltoren rather than the Euromast, and silhouettes rather than coloured blocks.
 - Navigation buttons are bare chevrons without the light circle behind them.
 - Cards, bar tracks and the four infographic panels are opaque (`--card`: a white 14% wash over solid `#2f78c6`; the panels use the same colours as SVG rects), so the drifting clouds pass behind them and never show through the text.
-- Removed at his request, do not bring back without being asked: the quiz slide, "Is het niet gevaarlijk?", "Leuke weetjes" (including the peregrine falcon comparison), "Wie het snelst valt, wint!", "Bedankt!".
+- Removed at his request, do not bring back without being asked: the "Wat heb je nodig?" slide (helm, pak, parachute, hoogtemeter, FlySight), the quiz slide, "Is het niet gevaarlijk?", "Leuke weetjes" (including the peregrine falcon comparison), "Wie het snelst valt, wint!", "Bedankt!".
 
 ## Facts used, and their sources
 

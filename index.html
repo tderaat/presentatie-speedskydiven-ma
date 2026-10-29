@@ -78,13 +78,6 @@
   .tower .block { width: clamp(40px, 6vw, 90px); border-radius: 8px 8px 0 0; }
   .tower span { font-size: clamp(14px, 1.8vw, 24px); margin-top: 8px; font-weight: bold; }
 
-  /* Uitrusting */
-  .gear { display: flex; flex-wrap: nowrap; justify-content: center; gap: 1.5vw; width: min(1250px, 94vw); }
-  .gear .card { padding: 2.5vh 1vw; flex: 1 1 0; min-width: 0; }
-  .gear .icon { font-size: clamp(26px, 3.6vw, 52px); font-weight: 900; color: var(--yellow); }
-  .gear p { font-size: clamp(13px, 1.6vw, 24px); }
-  .gear b { font-size: clamp(14px, 1.8vw, 28px); }
-
   /* Hoe win je: drie kaarten naast elkaar */
   .win .card { flex: 1 1 0; min-width: 0; padding: 2.5vh 1.5vw; }
   .win .big { font-size: clamp(44px, 8vw, 120px); }
@@ -103,9 +96,6 @@
   .slide-video { max-width: 94vw; max-height: 82vh; border-radius: 16px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
   /* hugo.mp4 is 1280x720 en zou anders kleiner blijven dan speed.mp4 (1920x1080): vaste hoogte, net onder de 82vh van de tweede */
   .slide-video.medium { height: 74vh; width: auto; }
-
-  /* Tijdelijke TODO-notitie op een dia */
-  .todo { color: #ff3b3b; font-weight: bold; font-size: clamp(16px, 1.8vw, 26px); margin-top: 3vh; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
 
   /* Figuur met bewegende pijl naar beneden */
   .fig-stack { display: flex; flex-direction: column; align-items: center; gap: 1vh; margin: 1vh 0; }
@@ -158,7 +148,7 @@
 <div class="cloud" style="top:62vh;width:170px;height:40px;animation-duration:55s;animation-delay:-37.5s"></div>
 
 <div class="progress" id="progress"></div>
-<div class="help">Klik of pijltjes = volgende / vorige &nbsp; F = volledig scherm &nbsp; N = spreektekst</div>
+<div class="help">Klik of pijltjes = volgende / vorige &nbsp; F = volledig scherm</div>
 
 <!-- Tekeningen, één keer gedefinieerd en daarna hergebruikt -->
 <svg width="0" height="0" style="position:absolute">
@@ -410,22 +400,8 @@
   </div>
 </section>
 
-<!-- 9. Uitrusting -->
-<section class="slide" data-notes="Voor speed skydiven is nodig: een gladde helm, zodat de lucht er makkelijk langs glijdt. Een strak pak, zodat er niets wappert. Een parachute, en ook een reserveparachute voor als er iets misgaat. Een hoogtemeter, die laat zien hoe hoog je bent. En een FlySight: een klein kastje dat met GPS meet hoe snel je gaat.">
-  <h2>Wat heb je nodig?</h2>
-  <div class="gear">
-    <div class="card"><div class="icon">1</div><b>Gladde helm</b><p>De lucht glijdt er makkelijk langs</p></div>
-    <div class="card"><div class="icon">2</div><b>Strak pak</b><p>Zodat er niks wappert</p></div>
-    <div class="card"><div class="icon">3</div><b>Parachute</b><p>En een reserve, voor de zekerheid</p></div>
-    <div class="card"><div class="icon">4</div><b>Hoogtemeter</b><p>Hoe hoog ben ik nog?</p></div>
-    <div class="card"><div class="icon">5</div><b>FlySight</b><p>Meet met GPS hoe snel je gaat</p><img src="flysight.png" alt="FlySight" style="width:60%;margin-top:1vh;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))"></div>
-  </div>
-  <!-- TODO: tijdelijke notitie, weghalen zodra de plaatjes erin staan -->
-  <p class="todo">TODO: hier komen nog meer plaatjes (helm, pak, parachute, hoogtemeter, enz.)</p>
-</section>
-
-<!-- 10. Hoe win je -->
-<section class="slide" data-notes="Bij een wedstrijd maakt iedereen 8 sprongen. Bij elke sprong kijkt de FlySight naar de snelste drie seconden. De gemiddelde snelheid in die drie seconden is de score voor die sprong. Aan het eind tellen de scores van alle 8 sprongen mee. Wie gemiddeld het snelst was, wint. Het gaat er dus om dat je elke keer heel snel bent. De snelste sprong ooit, gemeten met GPS, was 542 kilometer per uur, door Niklas Daniel uit Amerika in september 2026.">
+<!-- 9. Hoe win je -->
+<section class="slide" data-notes="Bij een wedstrijd maakt iedereen 8 sprongen. Bij elke sprong meet een klein GPS-kastje, de FlySight, de snelste drie seconden. De gemiddelde snelheid in die drie seconden is de score voor die sprong. Aan het eind tellen de scores van alle 8 sprongen mee. Wie gemiddeld het snelst was, wint. Het gaat er dus om dat je elke keer heel snel bent. De snelste sprong ooit, gemeten met GPS, was 542 kilometer per uur, door Niklas Daniel uit Amerika in september 2026.">
   <h2>Hoe win je?</h2>
   <div class="row win" style="gap:2.5vw;align-items:stretch;flex-wrap:nowrap;width:min(1150px,88vw)">
     <div class="card">
@@ -449,7 +425,7 @@
   </div>
 </section>
 
-<!-- 11. Einde -->
+<!-- 10. Einde -->
 <section class="slide" data-notes="Zijn er nog vragen?">
   <!-- Zelfde speed poppetje als op het beginscherm -->
   <svg class="title-diver" viewBox="0 -20 200 225">
