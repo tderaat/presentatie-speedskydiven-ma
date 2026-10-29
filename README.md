@@ -2,6 +2,6 @@
 
 Spreekbeurt over speed skydiven.
 
-- `presentatie.html`: de presentatie. Open in de browser, F = volledig scherm, klik of pijltjes = volgende/vorige, N = spreektekst.
+- `index.html`: de presentatie. Open in de browser, F = volledig scherm, klik of pijltjes = volgende/vorige, N = spreektekst.
 - `spreektekst.html`: de tekst per dia, om te printen.
 - `mockups-*.html`: ontwerpvarianten die tijdens het maken zijn bekeken.

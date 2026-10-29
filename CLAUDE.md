@@ -6,7 +6,7 @@ A school presentation (spreekbeurt) about speed skydiving for Marre Anne, a girl
 
 ## Files
 
-- `presentatie.html`: the presentation itself: inline CSS, inline SVG, a little vanilla JS. It needs no network, so it runs from a USB stick at school, as long as the files it loads sit next to it: `flysight.png` and the two videos.
+- `index.html`: the presentation itself (named `index.html` so GitHub Pages opens it at https://tderaat.github.io/presentatie-speedskydiven-ma/): inline CSS, inline SVG, a little vanilla JS. It needs no network, so it runs from a USB stick at school, as long as the files it loads sit next to it: `flysight.png` and the two videos.
 - `flysight.png`: photo of a FlySight (the original, black with the FlySight sticker) with the white background cut out to transparency and cropped to the device. Used on the "Wat heb je nodig?" slide.
 - `spreektekst.html`: the speaker text per slide, printable, plus presenting tips at the top.
 - `mockups-*.html`: design variants that were shown to choose from. They are not used by the presentation and may be deleted.
@@ -33,11 +33,11 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 
 ### Video slides
 
-A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). Both videos are H.264 MP4s next to `presentatie.html` and are in `.gitignore` (the first version of `hugo.mp4` was 494 MB, over GitHub's 100 MB limit), so they must be copied along by hand, for example onto the USB stick. A missing file shows as an empty black slide.
+A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). Both videos are H.264 MP4s next to `index.html` and are in `.gitignore` (the first version of `hugo.mp4` was 494 MB, over GitHub's 100 MB limit), so they must be copied along by hand, for example onto the USB stick. A missing file shows as an empty black slide.
 
 ## Drawing conventions
 
-All artwork is inline SVG `<symbol>`s in the hidden `<svg>` at the top of `presentatie.html`, reused with `<use>`:
+All artwork is inline SVG `<symbol>`s in the hidden `<svg>` at the top of `index.html`, reused with `<use>`:
 
 - `plane`: Cessna 208 Caravan side view, nose right (high wing with strut, fixed gear, cargo pod). Use this for every aircraft.
 - `flyer-belly`: belly-to-earth skydiver side view, **head on the right**, rig on the back, legs only slightly bent.
