@@ -28,7 +28,7 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 7. **Hoe hoog spring je?** Silhouettes of a house (8 m), the Eiffeltoren (330 m), the Burj Khalifa (828 m) and the Cessna 208 at 4000 m. The towers are to scale against the 4000 m; only the house is drawn bigger than scale so it stays visible.
 8. **Waarom als een pijl?** White belly skydiver with pink arrows (air pushing back, langzaam) next to the yellow head-down skydiver with airflow lines (snel). Below the cards: the faster you go, the more unstable it gets and the harder it is to hold the arrow position.
 9. **Hoe win je?** Three cards: a competition has 8 sprongen, per jump the 3 fastest seconds count, the fastest on average over all jumps wins. Below them: the fastest GPS jump ever.
-10. **Zijn er nog vragen?** Only that line, no "Bedankt!".
+10. **Einde:** only the speed figure with streaks, larger (`.title-diver.solo`), no text at all. The presenter says "Zijn er nog vragen?" (in the speaker text).
 
 ### Video slides
 

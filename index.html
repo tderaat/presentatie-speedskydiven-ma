@@ -85,6 +85,7 @@
 
   /* Beginscherm: speed poppetje met snelheidsstrepen die omhoog wegschieten */
   .title-diver { height: clamp(170px, 30vh, 300px); margin-bottom: 1vh; }
+  .title-diver.solo { height: clamp(260px, 55vh, 520px); margin: 0; }
   .streak { animation: streak 1s linear infinite; }
   @keyframes streak {
     0% { transform: translateY(40px); opacity: 0; }
@@ -428,7 +429,7 @@
 <!-- 10. Einde -->
 <section class="slide" data-notes="Zijn er nog vragen?">
   <!-- Zelfde speed poppetje als op het beginscherm -->
-  <svg class="title-diver" viewBox="0 -20 200 225">
+  <svg class="title-diver solo" viewBox="0 -20 200 225">
     <g fill="none" stroke="#fff" stroke-linecap="round">
       <g class="streak" style="animation-delay:0s;animation-duration:.8s"><path d="M33 52 v-30" stroke-width="3" opacity=".8"/></g>
       <g class="streak" style="animation-delay:-.29s;animation-duration:1s"><path d="M52.5 105 v-67" stroke-width="2" opacity=".5"/></g>
@@ -441,7 +442,6 @@
     </g>
     <use href="#flyer-head" x="71" y="62" width="58" height="135"/>
   </svg>
-  <h1>Zijn er nog <span class="yellow">vragen</span>?</h1>
 </section>
 
 <div class="notes" id="notes"></div>
