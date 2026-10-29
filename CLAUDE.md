@@ -33,7 +33,7 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 
 ### Video slides
 
-A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). Both videos are H.264 MP4s next to `index.html` and are in `.gitignore` (the first version of `hugo.mp4` was 494 MB, over GitHub's 100 MB limit), so they must be copied along by hand, for example onto the USB stick. A missing file shows as an empty black slide.
+A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). Both videos are H.264 MP4s next to `index.html` and are committed (`hugo.mp4` 38 MB, `speed.mp4` 26 MB), so GitHub Pages can play them. Keep each under GitHub's 100 MB file limit: the first `hugo.mp4` was 494 MB and had to be replaced. Note that Pages is public, so the videos are too. A missing file shows as an error box or an empty black slide.
 
 ## Drawing conventions
 
@@ -52,6 +52,7 @@ All artwork is inline SVG `<symbol>`s in the hidden `<svg>` at the top of `index
 - Figures must look smooth and well drawn, not angular stick figures. He chose from mockups each time; for a bigger visual change, show a few mockups first and let him pick.
 - Use real, recognisable references: Max Verstappen (no "Formule 1" label under the name), the Eiffeltoren rather than the Euromast, and silhouettes rather than coloured blocks.
 - Navigation buttons are bare chevrons without the light circle behind them.
+- Cards, bar tracks and the four infographic panels are opaque (`--card`: a white 14% wash over solid `#2f78c6`; the panels use the same colours as SVG rects), so the drifting clouds pass behind them and never show through the text.
 - Removed at his request, do not bring back without being asked: the quiz slide, "Is het niet gevaarlijk?", "Leuke weetjes" (including the peregrine falcon comparison), "Wie het snelst valt, wint!", "Bedankt!".
 
 ## Facts used, and their sources

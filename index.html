@@ -8,7 +8,8 @@
   :root {
     --sky-top: #0b3d91;
     --sky-bottom: #4fb3ff;
-    --card: rgba(255, 255, 255, 0.14);
+    /* Kaarten zijn dicht, zodat de wolken erachter verdwijnen en de tekst leesbaar blijft */
+    --card: linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)), #2f78c6;
     --text: #ffffff;
     --yellow: #ffd23f;
     --pink: #ff6fae;
@@ -63,7 +64,7 @@
   .bars { width: min(1000px, 88vw); text-align: left; }
   .bar-row { display: flex; align-items: center; gap: 1.5vw; margin: 1.6vh 0; }
   .bar-label { width: 28%; font-size: clamp(18px, 2.3vw, 32px); font-weight: bold; }
-  .bar-track { flex: 1; background: rgba(255,255,255,.15); border-radius: 999px; height: clamp(26px, 4.5vh, 48px); overflow: hidden; }
+  .bar-track { flex: 1; background: var(--card); border-radius: 999px; height: clamp(26px, 4.5vh, 48px); overflow: hidden; }
   .bar {
     height: 100%; width: 0; border-radius: 999px; display: flex; align-items: center; justify-content: flex-end;
     padding-right: 12px; font-weight: bold; font-size: clamp(14px, 1.9vw, 26px); white-space: nowrap;
@@ -245,7 +246,7 @@
   <svg class="steps" viewBox="0 70 1000 390">
     <!-- 1: omhoog vliegen -->
     <g transform="translate(30,70)">
-      <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+      <rect width="220" height="380" rx="22" fill="#2f78c6"/><rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <rect x="0" y="230" width="220" height="20" fill="#2f8f4e"/>
       <path d="M20 225 C 70 215, 110 140, 150 60" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round"/>
       <use href="#plane" x="122" y="28" width="94" height="35"/>
@@ -257,7 +258,7 @@
     </g>
     <!-- 2: springen -->
     <g transform="translate(275,70)">
-      <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+      <rect width="220" height="380" rx="22" fill="#2f78c6"/><rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <use href="#plane" x="10" y="36" width="160" height="60"/>
       <path d="M78 84 Q 100 108 116 138" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
       <use href="#flyer-belly" x="100" y="135" width="104" height="52" transform="rotate(14 152 161)"/>
@@ -267,7 +268,7 @@
     </g>
     <!-- 3: vrije val -->
     <g transform="translate(520,70)">
-      <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+      <rect width="220" height="380" rx="22" fill="#2f78c6"/><rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <path d="M70 30 V105 M95 18 V112 M120 22 V110 M145 34 V104" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
       <use href="#flyer-belly" x="40" y="112" width="140" height="70"/>
       <circle cx="34" cy="294" r="18" fill="#fff"/><text x="34" y="295" class="n">3</text>
@@ -277,7 +278,7 @@
     </g>
     <!-- 4: parachute en landen -->
     <g transform="translate(765,70)">
-      <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+      <rect width="220" height="380" rx="22" fill="#2f78c6"/><rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
       <rect x="0" y="230" width="220" height="20" fill="#2f8f4e"/>
       <!-- Open parachute; het poppetje hangt eronder, van voren, beide handen aan de stuurlijnen -->
       <g transform="translate(14 6) scale(1.3)">
