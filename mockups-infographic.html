@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockups infographic</title>
+<style>
+  body { margin: 0; padding: 24px 16px 60px; background: #1b2a41; color: #fff; font-family: 'Trebuchet MS', 'Segoe UI', sans-serif; }
+  h1 { text-align: center; font-weight: normal; opacity: .8; font-size: 20px; }
+  .option { width: min(1100px, 100%); margin: 0 auto 48px; }
+  .option h3 { margin: 0 0 8px; font-size: 22px; color: #ffd23f; }
+  .option p.desc { margin: 0 0 10px; opacity: .8; }
+  .frame {
+    aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; position: relative;
+    background: linear-gradient(180deg, #0b3d91 0%, #4fb3ff 100%);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .frame h2 { margin: 2.5% 0 0; font-size: clamp(22px, 3.6vw, 44px); text-shadow: 0 3px 0 rgba(0,0,0,.2); }
+  .frame svg { flex: 1; width: 100%; overflow: visible; }
+  svg text { font-family: 'Trebuchet MS', 'Segoe UI', sans-serif; fill: #fff; }
+  .t { font-size: 24px; font-weight: bold; }
+  .s { font-size: 17px; opacity: .85; }
+  .n { font-size: 22px; font-weight: bold; fill: #0b3d91; text-anchor: middle; dominant-baseline: central; }
+</style>
+</head>
+<body>
+
+<h1>Dia "Wat is skydiven?": kies een van de drie opties</h1>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- Vliegtuig, zijaanzicht, neus naar rechts -->
+    <symbol id="plane" viewBox="0 0 80 32">
+      <path d="M2 16 Q2 11 10 11 L62 11 Q74 11 78 16 Q74 21 62 21 L10 21 Q2 21 2 16 Z" fill="#fff"/>
+      <path d="M5 11 L3 1 L11 1 L18 11 Z" fill="#fff"/>
+      <path d="M30 17 L48 17 L40 31 L34 31 Z" fill="#dfe9f5"/>
+      <circle cx="56" cy="15" r="1.8" fill="#4fb3ff"/><circle cx="50" cy="15" r="1.8" fill="#4fb3ff"/><circle cx="44" cy="15" r="1.8" fill="#4fb3ff"/>
+    </symbol>
+    <!-- Skydiver op de buik, armen en benen wijd -->
+    <symbol id="flyer" viewBox="0 0 60 34">
+      <ellipse cx="30" cy="17" rx="9" ry="4.5" fill="#ffd23f"/>
+      <circle cx="42" cy="16" r="3.8" fill="#ffd23f"/>
+      <path d="M24 14 L15 5 M24 20 L15 29 M35 13 L41 4 M35 21 L41 30" stroke="#ffd23f" stroke-width="3.2" stroke-linecap="round"/>
+    </symbol>
+    <!-- Open parachute met poppetje -->
+    <symbol id="canopy" viewBox="0 0 60 62">
+      <path d="M4 18 Q30 0 56 18 L53 25 Q30 11 7 25 Z" fill="#5be37d"/>
+      <path d="M7 25 L30 46 M20 18 L30 46 M40 18 L30 46 M53 25 L30 46" stroke="#fff" stroke-width="1" opacity=".8"/>
+      <circle cx="30" cy="49" r="3.4" fill="#fff"/>
+      <path d="M30 52 V60 M26 55 H34" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <!-- Gelande skydiver -->
+    <symbol id="lander" viewBox="0 0 20 30">
+      <circle cx="10" cy="5" r="4" fill="#fff"/>
+      <path d="M10 9 V20 M10 20 L5 29 M10 20 L15 29 M3 13 H17" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- De hele vlucht: grond, hoogteschaal en de drie delen van de route -->
+    <g id="flight">
+      <rect x="-400" y="500" width="1800" height="200" fill="#2f8f4e"/>
+      <rect x="70" y="500" width="160" height="6" fill="#9aa5b1"/>
+      <text x="150" y="528" class="s" text-anchor="middle">vliegveld</text>
+
+      <line x1="40" y1="80" x2="40" y2="500" stroke="#fff" stroke-width="2" opacity=".5"/>
+      <line x1="40" y1="90" x2="960" y2="90" stroke="#fff" stroke-dasharray="4 8" opacity=".25"/>
+      <line x1="40" y1="397" x2="960" y2="397" stroke="#fff" stroke-dasharray="4 8" opacity=".25"/>
+      <text x="50" y="84" class="s">4 km</text>
+      <text x="50" y="391" class="s">1 km</text>
+
+      <path d="M110 495 C 200 470, 280 300, 360 105" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="1 12" stroke-linecap="round"/>
+      <use href="#plane" x="360" y="76" width="90" height="36"/>
+      <path d="M410 108 Q 440 112 462 120" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
+      <use href="#flyer" x="455" y="112" width="54" height="31"/>
+      <path d="M482 148 L 506 370" fill="none" stroke="#ffd23f" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"/>
+      <use href="#canopy" x="478" y="368" width="62" height="64"/>
+      <path d="M535 432 C 620 470, 700 410, 790 480" fill="none" stroke="#5be37d" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"/>
+      <use href="#lander" x="793" y="470" width="20" height="30"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- Optie A -->
+<div class="option">
+  <h3>Optie A: route met nummers erop</h3>
+  <p class="desc">De hele sprong als één tekening, met de stappen direct bij de lijn. Hoogtes links.</p>
+  <div class="frame">
+    <h2>Wat is skydiven?</h2>
+    <svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet">
+      <use href="#flight"/>
+      <circle cx="285" cy="380" r="20" fill="#fff"/><text x="285" y="381" class="n">1</text>
+      <text x="315" y="376" class="t">Omhoog vliegen</text>
+      <text x="315" y="400" class="s">naar 4 km hoogte</text>
+
+      <circle cx="545" cy="95" r="20" fill="#ffd23f"/><text x="545" y="96" class="n">2</text>
+      <text x="575" y="90" class="t">Springen</text>
+      <text x="575" y="114" class="s">uit het vliegtuig</text>
+
+      <circle cx="560" cy="250" r="20" fill="#ffd23f"/><text x="560" y="251" class="n">3</text>
+      <text x="590" y="245" class="t">Vrije val</text>
+      <text x="590" y="269" class="s">ongeveer 1 minuut</text>
+
+      <circle cx="610" cy="360" r="20" fill="#5be37d"/><text x="610" y="361" class="n">4</text>
+      <text x="640" y="355" class="t">Parachute open</text>
+      <text x="640" y="379" class="s">en rustig landen</text>
+    </svg>
+  </div>
+</div>
+
+<!-- Optie B -->
+<div class="option">
+  <h3>Optie B: tekening links, uitleg rechts</h3>
+  <p class="desc">Dezelfde tekening, kleiner. Rechts een rijtje met de vier stappen en hoe lang elke stap duurt. De kleuren horen bij elkaar.</p>
+  <div class="frame">
+    <h2>Wat is skydiven?</h2>
+    <svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet">
+      <g transform="translate(0,170) scale(0.66)"><use href="#flight"/></g>
+      <rect x="-400" y="500" width="1800" height="200" fill="#2f8f4e"/>
+      <circle cx="190" cy="420" r="14" fill="#fff"/><text x="190" y="421" class="n" style="font-size:16px">1</text>
+      <circle cx="360" cy="233" r="14" fill="#ffd23f"/><text x="360" y="234" class="n" style="font-size:16px">2</text>
+      <circle cx="370" cy="335" r="14" fill="#ffd23f"/><text x="370" y="336" class="n" style="font-size:16px">3</text>
+      <circle cx="405" cy="410" r="14" fill="#5be37d"/><text x="405" y="411" class="n" style="font-size:16px">4</text>
+
+      <g transform="translate(620,80)">
+        <rect x="-20" y="-20" width="370" height="400" rx="22" fill="#fff" opacity=".14"/>
+        <circle cx="20" cy="22" r="20" fill="#fff"/><text x="20" y="23" class="n">1</text>
+        <text x="56" y="18" class="t">Omhoog vliegen</text><text x="56" y="42" class="s">naar 4 km, ongeveer 20 minuten</text>
+        <circle cx="20" cy="117" r="20" fill="#ffd23f"/><text x="20" y="118" class="n">2</text>
+        <text x="56" y="113" class="t">Springen</text><text x="56" y="137" class="s">uit de open deur</text>
+        <circle cx="20" cy="212" r="20" fill="#ffd23f"/><text x="20" y="213" class="n">3</text>
+        <text x="56" y="208" class="t">Vrije val</text><text x="56" y="232" class="s">ongeveer 1 minuut</text>
+        <circle cx="20" cy="307" r="20" fill="#5be37d"/><text x="20" y="308" class="n">4</text>
+        <text x="56" y="303" class="t">Parachute en landen</text><text x="56" y="327" class="s">ongeveer 5 minuten</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- Optie C -->
+<div class="option">
+  <h3>Optie C: vier plaatjes op een rij</h3>
+  <p class="desc">Als een stripverhaal: elke stap een eigen plaatje, verbonden met stippellijnen.</p>
+  <div class="frame">
+    <h2>Wat is skydiven?</h2>
+    <svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet">
+      <!-- 1: opstijgen -->
+      <g transform="translate(30,70)">
+        <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+        <rect x="0" y="230" width="220" height="20" fill="#2f8f4e"/>
+        <path d="M20 225 C 70 215, 110 140, 150 60" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round"/>
+        <use href="#plane" x="130" y="30" width="80" height="32"/>
+        <text x="20" y="40" class="s">4 km</text>
+        <circle cx="34" cy="294" r="18" fill="#fff"/><text x="34" y="295" class="n" style="font-size:20px">1</text>
+        <text x="62" y="301" class="t" style="font-size:21px">Omhoog</text>
+        <text x="20" y="340" class="s">naar 4 km hoogte</text>
+        <text x="20" y="362" class="s">ongeveer 20 min.</text>
+      </g>
+      <!-- 2: springen -->
+      <g transform="translate(275,70)">
+        <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+        <use href="#plane" x="10" y="40" width="150" height="60"/>
+        <path d="M95 90 Q 120 110 135 140" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
+        <use href="#flyer" x="120" y="140" width="80" height="46"/>
+        <circle cx="34" cy="294" r="18" fill="#ffd23f"/><text x="34" y="295" class="n" style="font-size:20px">2</text>
+        <text x="62" y="301" class="t" style="font-size:21px">Springen</text>
+        <text x="20" y="340" class="s">uit de open deur</text>
+      </g>
+      <!-- 3: vrije val -->
+      <g transform="translate(520,70)">
+        <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+        <path d="M80 30 V110 M100 20 V115 M120 30 V110 M140 40 V105" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".55"/>
+        <use href="#flyer" x="55" y="120" width="110" height="62"/>
+        <circle cx="34" cy="294" r="18" fill="#ffd23f"/><text x="34" y="295" class="n" style="font-size:20px">3</text>
+        <text x="62" y="301" class="t" style="font-size:21px">Vrije val</text>
+        <text x="20" y="340" class="s">ongeveer 1 minuut</text>
+        <text x="20" y="362" class="s">200 km per uur</text>
+      </g>
+      <!-- 4: parachute en landen -->
+      <g transform="translate(765,70)">
+        <rect width="220" height="380" rx="22" fill="#fff" opacity=".14"/>
+        <rect x="0" y="230" width="220" height="20" fill="#2f8f4e"/>
+        <use href="#canopy" x="30" y="20" width="80" height="83"/>
+        <path d="M80 110 C 100 160, 150 170, 165 200" fill="none" stroke="#5be37d" stroke-width="4" stroke-dasharray="12 8" stroke-linecap="round"/>
+        <use href="#lander" x="160" y="200" width="20" height="30"/>
+        <circle cx="34" cy="294" r="18" fill="#5be37d"/><text x="34" y="295" class="n" style="font-size:20px">4</text>
+        <text x="62" y="301" class="t" style="font-size:21px">Landen</text>
+        <text x="20" y="340" class="s">parachute open</text>
+        <text x="20" y="362" class="s">ongeveer 5 min.</text>
+      </g>
+      <!-- verbindingspijlen -->
+      <path d="M252 260 H273 M497 260 H518 M742 260 H763" stroke="#fff" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+</body>
+</html>

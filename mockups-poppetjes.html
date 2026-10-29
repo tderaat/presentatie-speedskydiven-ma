@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockups poppetjes</title>
+<style>
+  body { margin: 0; padding: 24px 16px 60px; background: #1b2a41; color: #fff; font-family: 'Trebuchet MS', 'Segoe UI', sans-serif; }
+  h1 { text-align: center; font-weight: normal; opacity: .8; font-size: 20px; }
+  .option { width: min(1100px, 100%); margin: 0 auto 48px; }
+  .option h3 { margin: 0 0 6px; font-size: 22px; color: #ffd23f; }
+  .option p.desc { margin: 0 0 10px; opacity: .8; }
+  .frame {
+    border-radius: 14px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    background: linear-gradient(180deg, #0b3d91 0%, #4fb3ff 100%);
+  }
+  .part h4 { margin: 0 0 10px; font-weight: normal; opacity: .85; text-align: center; }
+  .cards { display: flex; gap: 14px; justify-content: center; }
+  .card { background: rgba(255,255,255,.14); border-radius: 18px; padding: 14px; flex: 1; text-align: center; }
+  .card b { display: block; margin-bottom: 6px; }
+  .card svg.scene { width: 100%; height: 150px; }
+  .stack { display: flex; flex-direction: column; align-items: center; height: 220px; justify-content: center; }
+  .arrow { width: 26px; height: 52px; animation: drop 1.4s ease-in infinite; }
+  .arrow.fast { animation-duration: .6s; }
+  @keyframes drop {
+    0% { transform: translateY(-10px); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(16px); opacity: 0; }
+  }
+  @media (max-width: 760px) { .frame { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Poppetjes: kies een stijl (of combineer: stijl X voor de stappen, stijl Y voor dia 3)</h1>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="plane" viewBox="0 0 118 44">
+      <g stroke="#fff" stroke-linecap="round">
+        <path d="M70 15 L75 30" stroke-width="1.6"/>
+        <path d="M71 33 L66 40" stroke-width="2.2"/>
+        <path d="M100 29 L100 39" stroke-width="2"/>
+      </g>
+      <circle cx="66" cy="40.5" r="3" fill="#fff"/>
+      <circle cx="100" cy="40.5" r="2.6" fill="#fff"/>
+      <path d="M8 21 L2 3 L10 3 L24 17 Z" fill="#fff"/>
+      <path d="M2 19 L18 19 L16 21.5 L1 21.5 Z" fill="#dfe9f5"/>
+      <path d="M8 17 L84 15 Q92 15 97 20 L108 22 Q114 24.5 108 27 L96 29.5 Q88 32 80 32 L36 31 Q20 28 8 21 Z" fill="#fff"/>
+      <path d="M42 31 L84 31 Q87 34 82 35.5 L46 35.5 Q40 34.5 42 31 Z" fill="#dfe9f5"/>
+      <path d="M50 12 L78 12 Q80 13.5 78 15 L50 15 Z" fill="#dfe9f5"/>
+      <path d="M86 17 Q91 17 94 20.5 L86 20.5 Z" fill="#4fb3ff"/>
+      <g fill="#4fb3ff"><rect x="44" y="18" width="5" height="3.5" rx="1"/><rect x="53" y="18" width="5" height="3.5" rx="1"/><rect x="62" y="18" width="5" height="3.5" rx="1"/><rect x="71" y="18" width="5" height="3.5" rx="1"/></g>
+      <ellipse cx="113" cy="24.5" rx="1.6" ry="12" fill="#fff" opacity=".45"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="options"></div>
+
+<script>
+  // Lichaamshouding: gewrichten in het eigen assenstelsel van elke figuur.
+  // Buik naar beneden, van opzij (hoofd links), in 140 x 70.
+  var BELLY = {
+    vb: '0 0 140 70',
+    head: [17, 31, 9], visor: [-4, 4],
+    torso: { p0: [32, 34], c: [56, 41], p1: [80, 35], w: 15 },
+    rig: { x: 44, y: 19, w: 30, h: 12, r: 4 },
+    far:  [ { pts: [[42,33],[46,17],[33,9]], w: 5.5, end: 'hand' }, { pts: [[76,38],[98,44],[119,35]], w: 8, end: 'foot' } ],
+    near: [ { pts: [[36,32],[37,15],[23,8]], w: 6, end: 'hand' },   { pts: [[78,36],[101,41],[123,30]], w: 9, end: 'foot' } ]
+  };
+  // Hoofd naar beneden, armen naar achteren langs het lichaam, in 60 x 140. Buik links, rug (met parachute) rechts.
+  var HEADDOWN = {
+    vb: '0 0 60 140',
+    head: [28, 125, 9], visor: [-5, 1],
+    torso: { p0: [29, 109], c: [25, 86], p1: [31, 62], w: 15 },
+    rig: { x: 34, y: 69, w: 11, h: 33, r: 4 },
+    far:  [ { pts: [[34,62],[36,36],[37,11]], w: 8, end: 'foot' }, { pts: [[30,104],[37,90],[43,76]], w: 5.5, end: 'hand' } ],
+    near: [ { pts: [[33,104],[42,90],[50,75]], w: 6, end: 'hand' }, { pts: [[30,62],[30,36],[29,10]], w: 9, end: 'foot' } ]
+  };
+
+  var PALETTES = {
+    yellow: { main: '#ffd23f', shade: '#d6a21c', rig: '#b07f00' },
+    white:  { main: '#ffffff', shade: '#c3cfdf', rig: '#8fa3bf' }
+  };
+  var DARK = '#26303f', VISOR = '#7fd1ff', OUTLINE = '#0d2650';
+
+  // Vloeiende lijn door drie punten: de bocht gaat precies door het middelste gewricht.
+  function curve(p) {
+    var cx = 2 * p[1][0] - (p[0][0] + p[2][0]) / 2, cy = 2 * p[1][1] - (p[0][1] + p[2][1]) / 2;
+    return 'M' + p[0] + ' Q' + cx + ',' + cy + ' ' + p[2];
+  }
+  function stroke(d, color, w) {
+    return '<path d="' + d + '" fill="none" stroke="' + color + '" stroke-width="' + w + '" stroke-linecap="round" stroke-linejoin="round"/>';
+  }
+  function circle(x, y, r, color) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + color + '"/>'; }
+
+  // style: 'silhouet' | 'vlak' | 'cartoon'
+  function figure(def, style, pal) {
+    var out = '', outline = style === 'cartoon';
+    function limb(l, color) {
+      var d = curve(l.pts), e = l.pts[2], er = l.w * (l.end === 'foot' ? .75 : .65);
+      if (outline) out += stroke(d, OUTLINE, l.w + 4) + circle(e[0], e[1], er + 2, OUTLINE);
+      out += stroke(d, color, l.w);
+      if (style !== 'silhouet') out += circle(e[0], e[1], er, DARK);
+    }
+    def.far.forEach(function (l) { limb(l, pal.shade); });
+
+    var t = def.torso, td = 'M' + t.p0 + ' Q' + t.c + ' ' + t.p1;
+    if (outline) out += stroke(td, OUTLINE, t.w + 4);
+    out += stroke(td, pal.main, t.w);
+
+    var r = def.rig, rigColor = style === 'silhouet' ? pal.rig : DARK;
+    if (outline) out += '<rect x="' + (r.x - 2) + '" y="' + (r.y - 2) + '" width="' + (r.w + 4) + '" height="' + (r.h + 4) + '" rx="' + (r.r + 2) + '" fill="' + OUTLINE + '"/>';
+    out += '<rect x="' + r.x + '" y="' + r.y + '" width="' + r.w + '" height="' + r.h + '" rx="' + r.r + '" fill="' + rigColor + '"/>';
+
+    var h = def.head, hr = h[2] + (outline ? 1.5 : 0);
+    if (outline) out += circle(h[0], h[1], hr + 2, OUTLINE);
+    if (style === 'silhouet') out += circle(h[0], h[1], hr, pal.main);
+    else {
+      out += circle(h[0], h[1], hr, DARK);
+      out += '<ellipse cx="' + (h[0] + def.visor[0]) + '" cy="' + (h[1] + def.visor[1]) + '" rx="' + (hr * .5) + '" ry="' + (hr * .4) + '" fill="' + VISOR + '"/>';
+    }
+
+    def.near.forEach(function (l) { limb(l, pal.main); });
+    return out;
+  }
+  function figSvg(def, style, pal, attrs) {
+    return '<svg viewBox="' + def.vb + '" ' + (attrs || '') + '>' + figure(def, style, pal) + '</svg>';
+  }
+  function arrow(fast) {
+    return '<svg class="arrow' + (fast ? ' fast' : '') + '" viewBox="0 0 30 60"><path d="M15 4 V48 M5 38 L15 52 L25 38" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  var OPTIONS = [
+    { style: 'silhouet', title: 'Stijl 1: silhouet', desc: 'Eén kleur, ronde vormen. De parachute op de rug is iets donkerder.' },
+    { style: 'vlak',     title: 'Stijl 2: vlak getekend', desc: 'Gekleurd pak, donkere helm met vizier, donkere parachute, handschoenen en schoenen.' },
+    { style: 'cartoon',  title: 'Stijl 3: cartoon met omlijning', desc: 'Als stijl 2, maar met een donkere rand en een iets groter hoofd. Leest goed van ver.' }
+  ];
+
+  var html = '';
+  OPTIONS.forEach(function (o) {
+    var y = PALETTES.yellow, w = PALETTES.white;
+    html += '<div class="option"><h3>' + o.title + '</h3><p class="desc">' + o.desc + '</p><div class="frame">' +
+      '<div class="part"><h4>Dia 2: stap 2 en 3</h4><div class="cards">' +
+        '<div class="card"><b>2 Springen</b><svg class="scene" viewBox="0 0 220 220">' +
+          '<use href="#plane" x="6" y="20" width="160" height="60"/>' +
+          '<path d="M74 68 Q 96 94 110 122" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>' +
+          '<g transform="translate(92,118) rotate(14 60 30) scale(.85)">' + figure(BELLY, o.style, y) + '</g>' +
+        '</svg></div>' +
+        '<div class="card"><b>3 Vrije val</b><svg class="scene" viewBox="0 0 220 220">' +
+          '<path d="M60 20 V95 M90 10 V102 M120 14 V100 M150 26 V96" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>' +
+          '<g transform="translate(20,105) scale(1.3)">' + figure(BELLY, o.style, y) + '</g>' +
+        '</svg></div>' +
+      '</div></div>' +
+      '<div class="part"><h4>Dia 3: gewoon en speed skydiven</h4><div class="cards">' +
+        '<div class="card"><b>Gewoon skydiven</b><div class="stack">' + figSvg(BELLY, o.style, w, 'style="width:150px"') + arrow(false) + '</div></div>' +
+        '<div class="card"><b style="color:#ffd23f">Speed skydiven</b><div class="stack">' + figSvg(HEADDOWN, o.style, y, 'style="height:150px"') + arrow(true) + '</div></div>' +
+      '</div></div>' +
+    '</div></div>';
+  });
+  document.getElementById('options').innerHTML = html;
+</script>
+</body>
+</html>
