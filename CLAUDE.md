@@ -1,6 +1,6 @@
 # Speed skydiving school presentation
 
-A school presentation (spreekbeurt) about speed skydiving for Marre Anne, a girl of about 9. It is written in Dutch, in simple language for children of that age. Thomas (her uncle, a speed skydiver who builds FlySight Insights) asks for the changes.
+A school presentation (spreekbeurt) about speed skydiving for a girl of about 9 (Thomas's niece). Her name is deliberately not in the presentation or these docs, because the site is public. It is written in Dutch, in simple language for children of that age. Thomas (her uncle, a speed skydiver who builds FlySight Insights) asks for the changes.
 
 **Commits:** no `Co-Authored-By:` trailer and no "Generated with Claude Code" line, in commit messages or anywhere else (Thomas's rule from the flysight-insights repo, applied here too). Commit straight to `main`.
 
@@ -19,7 +19,7 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 
 ## Slides (current order)
 
-1. **Titel:** the head-down `flyer-head` skydiver with white speed streaks of different lengths shooting up past and above it (style B of `mockups-luchtstroming.html`, `.streak` animation), then "Speed skydiven", "De snelste sport zonder motor" and "Door Marre Anne" (no colon, smaller and semi-transparent, hard-coded).
+1. **Titel:** the head-down `flyer-head` skydiver with white speed streaks of different lengths shooting up past and above it (style B of `mockups-luchtstroming.html`, `.streak` animation), then "Speed skydiven" and "De snelste sport zonder motor". No presenter name: the "Door ..." line was removed at Thomas's request; do not add it back.
 2. **Wat is skydiven?** Infographic of four panels in a row (option C of the mockups): 1 omhoog to 4 km (about 20 min), 2 springen uit de open deur, 3 vrije val (about 1 min, 200 km/u), 4 parachute en landen (about 5 min). Dotted lines connect them; white for the climb, yellow for jump and freefall, green for the canopy. All four number circles are white. Panel 4 combines mockup options from `mockups-landen.html`: the canopy of B (the yellow skydiver hanging under it, seen from the front, both hands on the toggles) and the landing of D (standing side-on next to the folded-down canopy, waving). Both figures are drawn inline in that panel, not as symbols. The infographic is sized `min(1500px, 97vw)` wide and at most `74vh` tall so it fits under the heading.
 3. **Video:** plays `hugo.mp4` from the same folder, filling the slide (see "Video slides" below).
 4. **Wat is speed skydiven?** A belly-to-earth skydiver with a slow animated arrow down, next to a head-down skydiver with a fast animated arrow.
