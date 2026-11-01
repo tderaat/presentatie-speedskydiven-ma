@@ -358,22 +358,9 @@
   <video class="slide-video" src="speed.mp4" controls playsinline preload="auto"></video>
 </section>
 
-<!-- 7. Hoe hoog -->
-<section class="slide" data-notes="Om zo snel te gaan, moet een sprong heel hoog beginnen. Het vliegtuig vliegt ongeveer 4 kilometer hoog. De Eiffeltoren in Parijs is 330 meter hoog. Het hoogste gebouw van de wereld, de Burj Khalifa in Dubai, is bijna 830 meter hoog. Het vliegtuig vliegt dus bijna vijf keer zo hoog als het hoogste gebouw van de wereld.">
-  <h2>Hoe hoog spring je?</h2>
-  <div class="row" style="gap:5vw;align-items:flex-end">
-    <div class="tower-wrap">
-      <div class="tower"><svg viewBox="0 0 40 36" style="height:16px;width:18px"><use href="#house"/></svg><span>Huis<br>8 m</span></div>
-      <div class="tower"><svg viewBox="0 0 60 120" preserveAspectRatio="none" style="height:8.25%;width:clamp(26px,3vw,46px)"><use href="#eiffel"/></svg><span>Eiffeltoren<br>330 m</span></div>
-      <div class="tower"><svg viewBox="0 0 60 200" preserveAspectRatio="none" style="height:20.7%;width:clamp(26px,3vw,46px)"><use href="#burj"/></svg><span>Burj Khalifa<br>828 m</span></div>
-      <div class="tower">
-        <svg viewBox="0 0 118 44" style="width:clamp(70px,8vw,120px)"><use href="#plane"/></svg>
-        <div class="block" style="height:calc(100% - 100px);background:repeating-linear-gradient(0deg,var(--yellow) 0 6px,transparent 6px 14px);width:6px"></div>
-        <span class="yellow">Vliegtuig<br>4000 m</span>
-      </div>
-    </div>
-    <div class="card" style="max-width:30vw"><p>Het vliegtuig is bijna <b class="yellow">5 keer</b> zo hoog als het hoogste gebouw van de wereld!</p></div>
-  </div>
+<!-- 7. Video mix -->
+<section class="slide" data-notes="Een filmpje over speed skydiven.">
+  <video class="slide-video" src="ingrid-mix.mp4" controls playsinline preload="auto"></video>
 </section>
 
 <!-- 8. Houding -->
@@ -463,10 +450,11 @@
     // Bedieningstekst rechtsonder alleen op het beginscherm
     document.querySelector('.help').style.display = current === 0 ? '' : 'none';
 
-    // Video speelt alleen op zijn eigen dia: start bij binnenkomst, pauzeert bij weggaan
+    // Video speelt alleen op zijn eigen dia: start bij binnenkomst, stopt bij weggaan en
+    // springt dan terug naar het begin, zodat hij bij terugkomen weer vooraan begint
     document.querySelectorAll('.slide video').forEach(function (v) {
       if (v.closest('.slide') === slides[current]) v.play().catch(function () {});
-      else v.pause();
+      else { v.pause(); v.currentTime = 0; }
     });
   }
 

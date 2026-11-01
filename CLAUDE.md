@@ -6,12 +6,12 @@ A school presentation (spreekbeurt) about speed skydiving for a girl of about 9 
 
 ## Files
 
-- `index.html`: the presentation itself (named `index.html` so GitHub Pages opens it at https://tderaat.github.io/presentatie-speedskydiven-ma/): inline CSS, inline SVG, a little vanilla JS. It needs no network, so it runs from a USB stick at school, as long as the files it loads sit next to it: `flysight.png` and the two videos.
+- `index.html`: the presentation itself (named `index.html` so GitHub Pages opens it at https://tderaat.github.io/presentatie-speedskydiven-ma/): inline CSS, inline SVG, a little vanilla JS. It needs no network, so it runs from a USB stick at school, as long as the files it loads sit next to it: `flysight.png` and the three videos.
 - `flysight.png`: photo of a FlySight (the original, black with the FlySight sticker) with the white background cut out to transparency and cropped to the device. Currently unused: the "Wat heb je nodig?" slide that showed it was removed at Thomas's request.
 - `spreektekst.html`: the speaker text per slide, printable, plus presenting tips at the top.
 - `mockups-*.html`: design variants that were shown to choose from. They are not used by the presentation and may be deleted.
 
-**Keep the two main files in sync.** Each slide's speaker text lives twice: in the slide's `data-notes` attribute (shown on screen with N) and in `spreektekst.html`. Change both. When a slide is added or removed, renumber the slides in `spreektekst.html` and check the duration estimate in the tips (now about 5 minutes for 10 slides, plus the two videos).
+**Keep the two main files in sync.** Each slide's speaker text lives twice: in the slide's `data-notes` attribute (shown on screen with N) and in `spreektekst.html`. Change both. When a slide is added or removed, renumber the slides in `spreektekst.html` and check the duration estimate in the tips (now about 5 minutes for 10 slides, plus the three videos).
 
 ## Controls
 
@@ -25,14 +25,14 @@ Click anywhere (except the nav buttons) or press Right/Space/Enter for the next 
 4. **Wat is speed skydiven?** A belly-to-earth skydiver with a slow animated arrow down, next to a head-down skydiver with a fast animated arrow.
 5. **Hoe snel gaat dat?** Animated bars: fiets 25, auto 120, snelle trein 300, Max Verstappen 350, speed skydiver 500+ km/u.
 6. **Video speed:** plays `speed.mp4`, a speed jump.
-7. **Hoe hoog spring je?** Silhouettes of a house (8 m), the Eiffeltoren (330 m), the Burj Khalifa (828 m) and the Cessna 208 at 4000 m. The towers are to scale against the 4000 m; only the house is drawn bigger than scale so it stays visible.
+7. **Video mix:** plays `ingrid-mix.mp4`. It replaced the "Hoe hoog spring je?" slide (house, Eiffeltoren, Burj Khalifa and Cessna at 4000 m) at Thomas's request; the `house`, `eiffel` and `burj` symbols and the `.tower` CSS are now unused.
 8. **Waarom als een pijl?** White belly skydiver with pink arrows (air pushing back, langzaam) next to the yellow head-down skydiver with airflow lines (snel). Below the cards: the faster you go, the more unstable it gets and the harder it is to hold the arrow position.
 9. **Hoe win je?** Three cards: a competition has 8 sprongen, per jump the 3 fastest seconds count, the fastest on average over all jumps wins. Below them: the fastest GPS jump ever.
 10. **Einde:** only the speed figure with streaks, larger (`.title-diver.solo`), no text at all. The presenter says "Zijn er nog vragen?" (in the speaker text).
 
 ### Video slides
 
-A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). Both videos are H.264 MP4s next to `index.html` and are committed (`hugo.mp4` 38 MB, `speed.mp4` 26 MB), so GitHub Pages can play them. Keep each under GitHub's 100 MB file limit: the first `hugo.mp4` was 494 MB and had to be replaced. Note that Pages is public, so the videos are too. A missing file shows as an error box or an empty black slide.
+A video slide is a `<section class="slide">` holding only `<video class="slide-video" src="..." controls playsinline preload="auto">`; `show()` plays the video of the active slide and pauses every other one, resetting it to the start, so a video always plays from the beginning when you come back to its slide. On a video slide Space toggles play/pause instead of advancing, and clicking the video does not advance (clicking beside it does). The videos are MP4s next to `index.html` and are committed (`hugo.mp4` 38 MB, `speed.mp4` 26 MB, `ingrid-mix.mp4` 14 MB), so GitHub Pages can play them. Keep each under GitHub's 100 MB file limit: the first `hugo.mp4` was 494 MB and had to be replaced. Note that Pages is public, so the videos are too. A missing file shows as an error box or an empty black slide.
 
 ## Drawing conventions
 
